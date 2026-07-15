@@ -1,10 +1,3 @@
-"""
-services/account_service.py
-
-Business rules for accounts: valid account types, no negative deposits,
-no overdrawing on withdrawal. All the "what SQL do I run" details are left
-to AccountRepository.
-"""
 from decimal import Decimal, InvalidOperation
 from models import Account, User, Transaction
 from repositories.account_repository import AccountRepository

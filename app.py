@@ -30,10 +30,10 @@ def create_app() -> Flask:
     user_repository = UserRepository()
     account_repository = AccountRepository()
 
-    #user_service = UserService(user_repository)
+    user_service = UserService(user_repository)
     account_service = AccountService(account_repository, user_repository)
 
-    #app.register_blueprint(build_user_blueprint(user_service))
+    app.register_blueprint(build_user_blueprint(user_service))
     app.register_blueprint(build_account_blueprint(account_service))
 
     # with app.app_context():
@@ -44,4 +44,4 @@ def create_app() -> Flask:
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=True)

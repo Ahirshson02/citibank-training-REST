@@ -25,9 +25,10 @@ def build_account_blueprint(account_service: AccountService) -> Blueprint:
         if account is None:
             return {"error": "account not found"}, 404
         return jsonify(account.to_dict()), 200
-    @account_bp.route("/<string:id>/all", methods=["GET"])
-    def get_all_accounts(id):
-        accounts = account_service.get_accounts_for_user(id)
+    
+    @account_bp.route("/<string:userId>/all", methods=["GET"])
+    def get_all_accounts(userId):
+        accounts = account_service.get_accounts_for_user(userId)
         if accounts is None:
             return {"error": "accounts not found"}, 404
         return jsonify([account.to_dict() for account in accounts]), 200
@@ -59,9 +60,9 @@ def build_account_blueprint(account_service: AccountService) -> Blueprint:
             return{"error": "amount must be greater than 0 and not greater than balance"}, 400
         return jsonify(transaction.to_dict()), 201
     
-    @account_bp.route("/<string:id>/transactions", methods=["GET"])
-    def get_transactions(id=id):
-        transactions = account_service.get_transactions(id)
+    @account_bp.route("/<string:userId>/transactions", methods=["GET"])
+    def get_transactions(userId):
+        transactions = account_service.get_transactions(userId)
         if transactions is None:
             return {"error": "no transactions found"}, 404
         return jsonify([t.to_dict() for t in transactions]), 200

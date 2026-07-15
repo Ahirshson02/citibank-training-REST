@@ -2,6 +2,8 @@
 from models import Account, Transaction
 from bson import ObjectId
 from mongoengine.errors import DoesNotExist
+from decimal import Decimal
+
 
 class AccountRepository:
     def find_by_id(self, account_id):
@@ -16,13 +18,13 @@ class AccountRepository:
         return Account.objects.create(user=user_id, account_type=account_type, balance=0)
     def deposit(self, account_id, amount, type):
         account = Account.objects.get(id=ObjectId(account_id))
-        account.balance = account.balance + amount
+        account.balance = account.balance + Decimal(amount)
         transaction = Transaction.objects.create(account=account_id, txn_type=type, amount=amount)
         account.save()
         return transaction
     def withdraw(self, account_id, amount, type):
         account = Account.objects.get(id=ObjectId(account_id))
-        account.balance = account.balance - amount
+        account.balance = account.balance - Decimal(amount)
         transaction = Transaction.objects.create(account=account_id, txn_type=type, amount=amount)
         account.save()
         return transaction

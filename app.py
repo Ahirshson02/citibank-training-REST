@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
 
-from extensions import init_db
+from extensions import init_db, jwt
 
 from repositories.user_repository import UserRepository
 from repositories.account_repository import AccountRepository
@@ -20,6 +20,7 @@ def create_app() -> Flask:
     CORS(app=app, methods=["GET","POST","DELETE","PATCH"], allow_headers=["Content-Type", "Authorization"])
     from config import Config
     app.config.from_object(Config)
+    jwt.init_app(app)
     init_db(app)
 
 

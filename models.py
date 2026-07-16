@@ -11,12 +11,13 @@ class User(me.Document):
     name = me.StringField(max_length=100)
     email = me.EmailField(required=True, unique=True, max_length=100)
     created_at = me.DateTimeField(default=datetime.now())
-
+    role = me.StringField(max_length=20, default="user")  
     def to_dict(self):
         return {
             "id": str(self.id),
             "name": self.name,
             "email": self.email,
+            "role": self.role,
             "created_at": self.created_at.isoformat(),
         }
 

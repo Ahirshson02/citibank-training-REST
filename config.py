@@ -12,7 +12,6 @@ class Config:
         "host": mongo_uri
     }
 
-    DEBUG = True
 
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
     JWT_ACCESS_TOKEN_EXPIRES = 3600

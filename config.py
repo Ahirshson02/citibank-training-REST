@@ -1,11 +1,19 @@
 import os
+
 class Config:
-    MONGODB_SETTINGS = {
-        "host": (
-            os.environ["MONGODB_URI"]
+    mongo_uri = os.getenv("MONGODB_URI")
+
+    if mongo_uri is None:
+        raise Exception(
+            f"MONGODB_URI missing. Available vars: {list(os.environ.keys())}"
         )
+
+    MONGODB_SETTINGS = {
+        "host": mongo_uri
     }
+
     DEBUG = True
-    JWT_SECRET_KEY = os.environ["JWT_SECRET_KEY"]
-    JWT_ACCESS_TOKEN_EXPIRES = 3600  # Token expires in 1 hour
-    JWT_REFRESH_TOKEN_EXPIRES = 86400  # Refresh token expires in 1 day
+
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+    JWT_ACCESS_TOKEN_EXPIRES = 3600
+    JWT_REFRESH_TOKEN_EXPIRES = 86400

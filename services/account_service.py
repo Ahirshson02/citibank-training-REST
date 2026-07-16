@@ -18,7 +18,7 @@ class AccountService:
             return None
         user: User | None = self.user_repository.find_by_id(user_id)
         if user is None:
-            print(f"User with id {user_id} not found.")
+          #  print(f"User with id {user_id} not found.")
             return None
         return self.account_repository.create(user_id=user_id, account_type=account_type)
 

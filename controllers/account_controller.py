@@ -64,7 +64,7 @@ def build_account_blueprint(account_service: AccountService) -> Blueprint:
     
     @account_bp.route("/<string:accountId>/transactions", methods=["GET"])
     def get_transactions(accountId):
-        print(f"acc id for get transactions: {accountId}")
+        #print(f"acc id for get transactions: {accountId}")
         transactions = account_service.get_transactions(accountId)
         if transactions is None:
             return {"error": "no transactions found"}, 404

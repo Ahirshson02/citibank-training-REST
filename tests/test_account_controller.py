@@ -1,22 +1,3 @@
-"""
-Pytest tests for the account Flask blueprint routes.
-
-These tests focus purely on the controller/route layer:
-- request parsing
-- status codes
-- response bodies
-- how the routes react to different return values from AccountService
-
-AccountService itself is mocked out (MagicMock), so none of its internal
-logic is exercised here -- only the contract between the routes and the
-service (i.e. what the routes do with whatever the service returns).
-
-Adjust the import below to match wherever `build_account_blueprint` actually
-lives in your project, e.g.:
-
-    from routes.account_routes import build_account_blueprint
-"""
-
 import pytest
 from unittest.mock import MagicMock
 from flask import Flask
